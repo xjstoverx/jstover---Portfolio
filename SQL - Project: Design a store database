@@ -1,0 +1,15 @@
+/** To Do List:
+Take out the Trash
+Organize Desk
+Update Laptop
+**/
+
+CREATE TABLE To_Do_List (id INTEGER PRIMARY KEY, name TEXT, minutes INTEGER); 
+
+INSERT INTO To_Do_List VALUES (1, "Take out Trash", 2);
+INSERT INTO To_DO_List VALUES (2, "Organize Desk", 15);
+INSERT INTO To_Do_List VALUES (3,"Update Laptop", 30);
+
+SELECT * FROM To_Do_List;
+
+SELECT SUM(minutes) FROM To_Do_List
