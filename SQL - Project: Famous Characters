@@ -1,0 +1,142 @@
+/* Create table about the people and what they do here */
+
+CREATE TABLE characters (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    Character_Name TEXT, 
+    Sex TEXT);
+
+INSERT INTO characters (Character_Name, Sex) VALUES ("Hulk", "Male");
+INSERT INTO characters (Character_Name, Sex) VALUES ("Thor", "Male");
+INSERT INTO characters (Character_Name, Sex) VALUES ("Spiderman", "Male");
+INSERT INTO characters (Character_Name, Sex) VALUES ("Captain Marvel", "Female");
+INSERT INTO characters (Character_Name, Sex) VALUES ("Valkyrie", "Female");
+INSERT INTO characters (Character_Name, Sex) VALUES ("Jack Stover", "Male");
+
+CREATE TABLE species (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Character_Id INTEGER,
+    Species_Name TEXT);
+
+INSERT INTO species (Character_Id, Species_Name) VALUES (1, "Human");
+INSERT INTO species (Character_Id, Species_Name) VALUES (2, "Asgardian");
+INSERT INTO species (Character_Id, Species_Name) VALUES (3, "Human");
+INSERT INTO species (Character_Id, Species_Name) VALUES (4, "Human");
+INSERT INTO species (Character_Id, Species_Name) VALUES (5, "Asgardian");
+INSERT INTO species (Character_Id, Species_Name) VALUES (6, "Human");
+
+CREATE TABLE powers (
+id INTEGER PRIMARY KEY AUTOINCREMENT, 
+Character_Id INTEGER, 
+Power_Name TEXT);
+
+INSERT INTO powers (Character_Id, Power_Name) VALUES (1, "Strength");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (1, "Durabilty");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (1, "Healing");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Strength");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Lightning");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Speed");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Agility");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Reflexes");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (2, "Longevity");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Strength");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Speed");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Reflexes");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Durabilty");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Healing");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Senses");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (3, "Wallcrawling");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Strength");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Stamina");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Agility");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Flight");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Durabilty");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (4, "Energy Blast");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Strength");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Speed");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Stamina");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Reflexes");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Durability");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Healing");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (5, "Longevity");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (6, "Reading Cursive");
+INSERT INTO powers (Character_Id, Power_Name) VALUES (6, "Writing Cursive");
+
+CREATE TABLE weaknesses (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    Character_Id INTEGER,
+    Weakness_Name TEXT);
+
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (1, "Magic");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (1, "Mind Control");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (2, "Magic");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (3, "Ethyl Chloride");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (4, "Mind Control");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (5, "Alcohol");
+INSERT INTO weaknesses (Character_Id, Weakness_Name) VALUES (6, "Raw Vegitables");
+
+CREATE TABLE friendships (
+    id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    person1_ID INTEGER, 
+    person2_ID INTEGER);
+    
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (1, 5);
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (1,2);
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (2,4);
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (2,5);
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (3,4);
+INSERT INTO friendships (person1_ID, person2_ID) VALUES (6, NULL);
+
+SELECT * FROM characters;
+SELECT * FROM species;
+SELECT * FROM powers;
+SELECT * FROM weaknesses;
+SELECT * FROM friendships;
+
+SELECT a.Character_Name, b.Character_Name
+FROM friendships
+OUTER LEFT JOIN characters a
+ON a.id = friendships.person1_ID
+OUTER LEFT JOIN characters b 
+ON b.id = friendships.person2_ID
+ORDER BY friendships.person1_ID;
+
+SELECT Character_Name, Power_Name 
+FROM powers
+JOIN characters
+ON characters.id = powers.Character_Id;
+
+SELECT Character_Name, Weakness_Name
+FROM weaknesses
+JOIN characters
+On characters.id = weaknesses.Character_Id;
+
+
+SELECT characters.Character_Name, species.Species_Name
+FROM species
+JOIN characters
+ON characters.id = species.Character_ID;
+
+SELECT Count(Power_Name) AS "Number of Heroes with Strength"
+FROM powers
+WHERE Power_Name = "Strength";
+
+SELECT Count(Sex) AS "Male Characters"
+FROM characters
+WHERE Sex = "Male";
+
+SELECT Count(Sex) AS "Female Characters"
+FROM characters
+WHERE Sex = "Female";
+
+SELECT Count(Species_Name) AS "Human Species"
+FROM species
+WHERE Species_Name = "Human";
+
+
+
+
+
+
+
+
+
