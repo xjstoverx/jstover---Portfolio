@@ -1,0 +1,31 @@
+CREATE TABLE employee_data ( 
+    id INTEGER PRIMARY KEY, 
+    first_name TEXT,
+    last_name TEXT,
+    age INTEGER,
+    email TEXT,
+    marital_status TEXT);
+    
+INSERT INTO employee_data (id, first_name, last_name, age, email, marital_status) VALUES (1, 'Bill', 'Billerson', 36, 'bb@company.com', 'single');
+INSERT INTO employee_data (id, first_name, last_name, age, email, marital_status) VALUES (2, 'Malory', 'Smith', 64, 'ms@company.com', 'married'); 
+INSERT INTO employee_data (id, first_name, last_name, age, email, marital_status) VALUES (3, 'Cheryl', 'Johnson', 27, 'cj@company.com', 'single');
+INSERT INTO employee_data (id, first_name, last_name, age, email, marital_status) VALUES (4, 'Beth', 'Stevenson', 38, 'bs@company.com', 'single');
+INSERT INTO employee_data (id, first_name, last_name, age, email, marital_status) VALUES (5, 'Ray', 'Michaels', 39, 'rm@company.com', 'single'); 
+
+UPDATE employee_data
+SET last_name = 'Michaels'
+WHERE id = 4;
+
+UPDATE employee_data 
+SET marital_status = 'Married'
+WHERE id = 4 
+OR id = 5;
+
+UPDATE employee_data
+SET email = 'bm@company.com'
+WHERE id = 4;
+
+DELETE FROM employee_data
+WHERE id = 1;
+
+FROM employee_data;
